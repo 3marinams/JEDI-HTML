@@ -1,0 +1,17 @@
+#img{
+	width: 60px;
+	height: 60px;
+	margin: 100px;
+	-webkit-animation: rotation 2s infinite linear;
+}
+
+@-webkit-keyframes rotation {
+	from{
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+
+}
+
