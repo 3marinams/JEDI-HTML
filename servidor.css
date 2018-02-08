@@ -1,0 +1,15 @@
+#boto{
+	margin :10px;
+	padding:10px;
+	display:flex;
+	justify-content:space-around;
+}
+
+.container{
+	display: flex;
+}
+
+#search{
+	display:flex;
+}
+

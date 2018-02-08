@@ -1,0 +1,109 @@
+<html lang="es">
+	<meta charset="UTF-8">
+
+	<head> 	
+
+		<meta charset="utf-8">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<link rel="stylesheet" type="text/css" href="servidor.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<script>
+			var id = 96;
+			$(document).ready(function(){
+				$("#botop").click(function(){
+
+					if(id === 1) id = 1;
+			    	else --id;
+
+			    	init(id);
+				});
+
+			
+				$("#boton").click(function(){
+					if (id === 802) id = 802;
+			    	else ++id;
+			    	init(id);
+			    	
+				});
+
+				$("#botos").click(function(){
+
+			    	id = $(".form-control").val();
+			    	id = parseInt(id);
+			    	init(id);
+			    	
+				});
+
+				init(id);
+			});
+			
+
+			function init(id){
+				var url = 'https://www.pokeapi.co/api/v2/pokemon/' + id.toString() + '/';
+				$.get( url, function( data ) {
+
+				  	$("#id").html(data.id);
+				  	$("#normal").html( '<img src= "' + data.sprites.front_default + '"/>');
+				  	$("#shiny").html( '<img src= "' + data.sprites.front_shiny + '"/>' );
+				 	$("#name").html(data.name);
+				  	$("#type").html(data.types[0].type.name);
+				  
+				}, "json" );
+			}
+
+		</script>
+
+	</head>
+
+	<body> 
+		<div class="container">       
+		  <table class="table">
+		    <thead>
+		      <tr>
+		        <th >ID</th>
+		        <th >Normal sprite</th>
+		        <th >Shiny sprite</th>
+		        <th >Name</th>
+		        <th >Type</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		      <tr>
+		        <td id = "id"> Waiting.. </td>
+		        <td id = "normal"> Waiting.. </td>
+		        <td id = "shiny"> Waiting.. </td>
+		        <td id = "name"> Waiting.. </td>
+		        <td id = "type"> Waiting.. </td>
+		      </tr>
+		    </tbody>
+		  </table>
+		</div>
+
+		<div id="boto">
+			
+			<button id ="botop" type="button" class="btn btn-primary"> Previous </button>
+
+			<div id = "search">
+				  <form action="/action_page.php">
+				    <div class="input-group">
+				      <input type="text" class="form-control" placeholder="Search by id" name="search">
+				      <div class="input-group-btn">
+				        <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+				      </div>
+				    </div>
+				  </form>
+				  <button id ="botos" type="button" class="btn btn-primary"> Search </button>
+			</div>  
+
+			<button id ="boton" type="button" class="btn btn-primary"> Next </button>
+		
+		</div>
+
+	</body>
+
+</html>
