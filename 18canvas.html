@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<meta charset="UTF-8">
+
+		<title>ESTE ES EL BUENO</title>
+		<script type="text/javascript">
+
+			var cpelota;
+			var x= 100;
+			var y = 100;
+			var vx = 2;
+			var vy = 3;
+
+			function init(){
+				cpelota = document.getElementById("canvasPelota").getContext("2d"); //cotexto en 2d
+				cpelota.fillStyle= "rgba(10,150,150,0.5)"
+				return setInterval(draw,10); //llamar a la funcion qe esta entre parametros cada 10 milisegundos
+			}
+			function circle(a,b){
+				cpelota.beginPath();  //lo que va aqui en medio se dibuja
+				cpelota.arc(a,b,20,0,Math.PI*2); //dibuixem una pilota (ARC(posiciox, posicioy, radi, angleinicial, anglefinal))
+				cpelota.closePath();
+				cpelota.fill(); //pilota pintada de color
+			}
+			function clear(){
+				cpelota.clearRect(0,0,300,300); //0,0 donde empieza el canvas y 300, 300 lo que ocupa
+			}
+			function draw(){
+				clear();
+				circle(x,y);
+				if(x + 20 + vx > 300 || x - 20 + vx < 0){
+					vx = - vx;
+				}
+				else if (y + 20 + vy > 300 || y - 20 + vy < 0){
+					vy = - vy;
+				}
+				x += vx;
+				y += vy;
+			}
+			window.onload = function(){
+				init();
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<canvas id = "canvasPelota" width="300" height="300"></canvas>
+	</body>
+</html>
