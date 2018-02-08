@@ -1,0 +1,25 @@
+#vermell{
+	background-color:red;
+	width:150px;
+	height:100px;
+	margin: 10px;
+}
+
+.blau {
+	background-color:blue;
+	width:150px;
+	height:100px;
+	margin: 10px;
+}
+
+.cos{
+	display:flex;
+	/*flex-direction: column;*/
+}
+
+.boto{
+	width:150px;
+	height:20px;
+	display:flex;
+	justify-content:space-around;
+}
